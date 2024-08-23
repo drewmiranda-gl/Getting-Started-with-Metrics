@@ -18,7 +18,7 @@ This document will cover the basics of how to:
 
 ### How everything fits together
 
-| <img src="./img/overall-diagram.png" alt="Picture of Prometheus targets showing an UP state" style="width:400px;" /> |
+| <img src="./img/overall-diagram.png" alt="Picture of Prometheus targets showing an UP state" style="width:600px;" /> |
 | --- |
 
 ## Basic Install of Prometheus and Grafana, using Docker
