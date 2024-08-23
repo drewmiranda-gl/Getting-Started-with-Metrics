@@ -232,3 +232,20 @@ Once completed, you should have 3 dashboards:
 | <img src="./img/graf-dash-list.png" alt="Picture of Prometheus targets showing an UP state" style="width:400px;" /> |
 | --- |
 
+### Basic Concepts
+
+Grafana dashboards are made up primally of 2 elements:
+
+* Visualizations - These are the widgets that will show data and these are the heart of all Grafana dashboards
+* Row - Visualizations can be grouped into rows for organization. Rows can easily be moved up or down in the order and they can be collapsed. This is useful if you have Visualizations you do not frequently use, but still want to keep them on the dashboard.
+
+When using a Grafana dashboard, you must specify a Time Range for retrieved data. Typically this will be a relative range, such as "Last 24 hours" but you can also use Absolute time ranges.
+
+| <img src="./img/graf-dash-timerange.png" alt="Picture of Prometheus targets showing an UP state" style="width:400px;" /> |
+| --- |
+
+Many dashboards will also have one or more variables that control what data is displayed. For example, you may have a single "Node Exporter Full" dashboard, but multiple devices beings scraped by prometheus. You can use the "Host" variable to change what single device you are viewing metrics for.
+
+| <img src="./img/graf-dash-var-host.png" alt="Picture of Prometheus targets showing an UP state" style="width:400px;" /> |
+| --- |
+
