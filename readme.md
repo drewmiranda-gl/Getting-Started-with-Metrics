@@ -133,8 +133,12 @@ Unfortunately the default entry here is improperly formatted. You need to either
 
 Add to the `scrape_configs` section of `prometheus.yml`. 
 
+> [!NOTE]  
+> Change target to reflect the appropriate value(s) for your environment.
+
 ```yml
-# scrape_configs: will already be present in the default prometheus.yml file, but adding here to show context
+# the line `scrape_configs:`
+# will already be present in the default prometheus.yml file, but adding here to show context
 scrape_configs:
   - job_name : graylog_exporter
     honor_timestamps : true
@@ -142,7 +146,7 @@ scrape_configs:
     scrape_timeout : 10s
     scheme : http
     static_configs :
-        - targets : ['192.168.0.164:9833']
+        - targets : ['127.0.0.1:9833']
 
   - job_name : opensearch_exporter
     honor_timestamps : true
@@ -151,7 +155,7 @@ scrape_configs:
     metrics_path: /metrics
     scheme : http
     static_configs :
-        - targets : ['192.168.0.164:9114']
+        - targets : ['127.0.0.1:9114']
 
   - job_name : node_exporter
     honor_timestamps : true
@@ -160,7 +164,7 @@ scrape_configs:
     metrics_path : /metrics
     scheme : http
     static_configs :
-        - targets : ['192.168.0.53:9100']
+        - targets : ['127.0.0.1:9100']
 ```
 
 Restart prometheus container to apply changes:
