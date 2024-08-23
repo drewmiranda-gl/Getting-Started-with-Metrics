@@ -181,11 +181,11 @@ If the container has an error or fails to start/restart you can get some ideas a
 
 Assuming the prometheus container is running and health, verify the targets show State: UP:
 
-1. Via a web browser, navigate to `:9090`
-2. Click on Stats / Targets
+1. Via a web browser, **navigate to** `:9090`
+2. Click on Stats / **Targets**
 3. Review the list of targets to verify that
   * you see the targets you expect to see and nothing is missing
-  * the targets are State: UP
+  * the targets are State: **UP**
 
 Additionally, you can click on the URL for each target to see the raw data that prometheus is scraping from the target.
 
@@ -204,13 +204,13 @@ Grafana has a fantastic library of dashboards via https://grafana.com/grafana/da
 
 For our purposes we will import some dashboards:
 
-1. Via a web browser, navigate to `:3000`
-2. Login with the default user/pass
+1. Via a web browser, **navigate to** `:3000`
+2. **Login** with the default user/pass
   * this is configurable via the docker compose using `GF_SECURITY_ADMIN_USER` and `GF_SECURITY_ADMIN_PASSWORD` environment variables.
   * username: admin
   * password: grafana
-3. Using the menu on the left side of the page, navigate to Dashboards
-4. Click New / Import<br><img src="./img/graf-dash-new-import.png" alt="Grafana Screenshot: Importing a Dashboard dialog" style="width:150px;" />
+3. Using the menu on the left side of the page, navigate to **Dashboards**
+4. Click **New** / **Import**<br><img src="./img/graf-dash-new-import.png" alt="Grafana Screenshot: Importing a Dashboard dialog" style="width:150px;" />
 5. Paste the ID, click Load, select a datasource, then finally click Import<br><img src="./img/graf-dash-import-load.png" alt="Grafana Screenshot: Importing a Dashboard dialog" style="width:300px;" />
   * Repeat import for each
     * 1860
