@@ -1031,7 +1031,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "irate(gl_elasticsearch_output_writes_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "increase(gl_elasticsearch_output_writes_total{instance=\"$instance\"}[$__rate_interval])",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
