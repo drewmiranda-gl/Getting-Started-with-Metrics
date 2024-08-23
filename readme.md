@@ -172,3 +172,24 @@ Restart prometheus container to apply changes:
 ```sh
 sudo docker restart prometheus
 ```
+
+## Verify prometheus
+
+Verify prometheus is up and healthy via `sudo docker ps`.
+
+If the container has an error or fails to start/restart you can get some ideas about what is wrong by viewing the container logs via `sudo docker logs prometheus`
+
+Assuming the prometheus container is running and health, verify the targets show State: UP:
+
+1. Via a web browser, navigate to `:9090`
+2. Click on Stats / Targets
+3. Review the list of targets to verify that
+  * you see the targets you expect to see and nothing is missing
+  * the targets are State: UP
+
+Additionally, you can click on the URL for each target to see the raw data that prometheus is scraping from the target.
+
+You should see something like this:
+
+| ![Picture of Prometheus targets showing an UP state](/img/prom-targets-up.png) |
+| --- |
