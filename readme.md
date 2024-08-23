@@ -39,7 +39,7 @@ Optionally, you can copy the services and volumes from `compose.yaml` and place 
 
 ## Install/Configure Exporters
 
-Special applications, called [exporters](https://prometheus.io/docs/instrumenting/exporters/), run on your server, and server prometheus compatible output via HTTP. Different types of exporters bind to different ports.
+Special applications, called [exporters](https://prometheus.io/docs/instrumenting/exporters/), run on your server, and serve prometheus compatible output via HTTP. Different types of exporters bind to different ports.
 
 ### Graylog
 
