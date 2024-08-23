@@ -193,3 +193,27 @@ You should see something like this:
 
 | ![Picture of Prometheus targets showing an UP state](/img/prom-targets-up.png) |
 | --- |
+
+## Grafana
+
+At this point you should have all of your exporters running and prometheus should be successfully scraping and storing the metrics for those exporters.
+
+The last step is to setup some grafana dashboards to visualize the data from prometheus. In general, Grafana works in a way that is similar to Graylog, in that it queries external data sources and displays the data.
+
+Grafana has a fantastic library of dashboards via https://grafana.com/grafana/dashboards/ .
+
+For our purposes we will import some dashboards:
+
+1. Via a web browser, navigate to `:3000`
+2. Login with the default user/pass
+  * this is configurable via the docker compose using `GF_SECURITY_ADMIN_USER` and `GF_SECURITY_ADMIN_PASSWORD` environment variables.
+  * username: admin
+  * password: grafana
+3. Using the menu on the left side of the page, navigate to Dashboards
+4. Click New / Import
+5. Paste the ID, click Load, select a datasource, then finally click Import
+  * Repeat import for each
+    * 1860
+      * [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
+    * 14191
+      * [Elasticsearch Exporter Quickstart and Dashboard](https://grafana.com/grafana/dashboards/14191-elasticsearch-overview/)
