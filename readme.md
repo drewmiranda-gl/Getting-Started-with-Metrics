@@ -191,7 +191,7 @@ Additionally, you can click on the URL for each target to see the raw data that 
 
 You should see something like this:
 
-| ![Picture of Prometheus targets showing an UP state](/img/prom-targets-up.png) |
+| <img src="./img/prom-targets-up.png" alt="Picture of Prometheus targets showing an UP state" style="width:400px;" /> |
 | --- |
 
 ## Grafana
@@ -210,8 +210,8 @@ For our purposes we will import some dashboards:
   * username: admin
   * password: grafana
 3. Using the menu on the left side of the page, navigate to Dashboards
-4. Click New / Import
-5. Paste the ID, click Load, select a datasource, then finally click Import
+4. Click New / Import<br><img src="./img/graf-dash-new-import.png" alt="Grafana Screenshot: Importing a Dashboard dialog" style="width:150px;" />
+5. Paste the ID, click Load, select a datasource, then finally click Import<br><img src="./img/graf-dash-import-load.png" alt="Grafana Screenshot: Importing a Dashboard dialog" style="width:200px;" />
   * Repeat import for each
     * 1860
       * [Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
