@@ -232,6 +232,9 @@ For the Graylog dashboard, we will use the one from this repo: `grafana/dashboar
 | <img src="./img/graf-dash-list.png" alt="Picture of Prometheus targets showing an UP state" style="width:400px;" /> |
 | --- |
 
+> [!NOTE]  
+> You can also copy/paste the JSON instead of downloading/uploading the `.json` file.
+
 ### Basic Concepts
 
 Grafana dashboards are made up primally of 2 elements:
