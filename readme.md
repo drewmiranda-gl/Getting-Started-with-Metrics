@@ -99,3 +99,72 @@ services:
 
 This exporter binds to `:9100`
 
+## Configuring prometheus
+
+Prometheus works by "scraping" target URLs, and saving the data in its local database. Targets are configured via `prometheus.yml` (`awesome-compose/prometheus-grafana/prometheus/prometheus.yml`)
+
+Note that any changes made to `prometheus.yml` require restarting Prometheus, or in this case, restarting the Prometheus container: `sudo docker restart prometheus`. (Note that prometheus does support triggering a reload of the configuration file via the `/-/reload` endpoint. See https://prometheus.io/docs/prometheus/latest/configuration/configuration/ )
+
+Unfortunately the default entry here is improperly formatted. You need to either delete this section, or indent every line by 2 spaces
+
+```yml
+# DELETE
+- job_name: prometheus
+  honor_timestamps: true
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - localhost:9090
+
+# OR INDENT WITH 2 SPACES
+  - job_name: prometheus
+    honor_timestamps: true
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+    - targets:
+      - localhost:9090
+```
+
+Add to the `scrape_configs` section of `prometheus.yml`. 
+
+```yml
+# scrape_configs: will already be present in the default prometheus.yml file, but adding here to show context
+scrape_configs:
+  - job_name : graylog_exporter
+    honor_timestamps : true
+    scrape_interval : 15s
+    scrape_timeout : 10s
+    scheme : http
+    static_configs :
+        - targets : ['192.168.0.164:9833']
+
+  - job_name : opensearch_exporter
+    honor_timestamps : true
+    scrape_interval : 15s
+    scrape_timeout : 10s
+    metrics_path: /metrics
+    scheme : http
+    static_configs :
+        - targets : ['192.168.0.164:9114']
+
+  - job_name : node_exporter
+    honor_timestamps : true
+    scrape_interval : 15s
+    scrape_timeout : 10s
+    metrics_path : /metrics
+    scheme : http
+    static_configs :
+        - targets : ['192.168.0.53:9100']
+```
+
+Restart prometheus container to apply changes:
+
+```sh
+sudo docker restart prometheus
+```
