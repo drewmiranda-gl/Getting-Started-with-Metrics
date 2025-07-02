@@ -1,32 +1,4 @@
 {
-
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.1.4"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -70,6 +42,324 @@
       "panels": [],
       "title": "Buffers",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*used.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 1
+      },
+      "id": 102,
+      "interval": "5s",
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "(gl_buffer_usage{type=\"input\", instance=~\"$instance\", job=~\"$job\"} / gl_buffer_size{type=\"input\", instance=~\"$instance\"})",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{instance}} Used",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Input Buffer",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*used.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 1
+      },
+      "id": 103,
+      "interval": "5s",
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "(gl_buffer_usage{type=\"process\", instance=~\"$instance\", job=~\"$job\"} / gl_buffer_size{type=\"process\", instance=~\"$instance\"})",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{instance}} Used",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Process Buffer",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "links": [],
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*used.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 101,
+      "interval": "5s",
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "(gl_buffer_usage{type=\"output\", instance=~\"$instance\", job=~\"$job\"} / gl_buffer_size{type=\"output\", instance=~\"$instance\"})",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{instance}} Used",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Output Buffer",
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -137,7 +427,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 1
+        "y": 8
       },
       "id": 8,
       "interval": "5s",
@@ -154,7 +444,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -162,8 +452,8 @@
             "uid": "${datasource}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "gl_buffer_usage{type=\"input\", instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "gl_buffer_usage{type=\"input\", instance=~\"$instance\", job=~\"$job\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -177,12 +467,16 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "gl_buffer_size{type=\"input\", instance=\"$instance\"}",
+          "expr": "gl_buffer_size{type=\"input\", instance=~\"$instance\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{instance}} Size",
           "range": true,
-          "refId": "B"
+          "refId": "B",
+          "useBackend": false
         }
       ],
       "title": "Input Buffer",
@@ -254,7 +548,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 1
+        "y": 8
       },
       "id": 20,
       "interval": "5s",
@@ -271,7 +565,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -279,7 +573,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_buffer_usage{type=\"process\", instance=\"$instance\"}",
+          "expr": "gl_buffer_usage{type=\"process\", instance=~\"$instance\", job=~\"$job\"}",
           "legendFormat": "{{instance}} Used",
           "range": true,
           "refId": "A"
@@ -290,7 +584,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_buffer_size{type=\"process\", instance=\"$instance\"}",
+          "expr": "gl_buffer_size{type=\"process\", instance=~\"$instance\", job=~\"$job\"}",
           "hide": false,
           "legendFormat": "{{instance}} Size",
           "range": true,
@@ -366,7 +660,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 1
+        "y": 8
       },
       "id": 21,
       "interval": "5s",
@@ -383,7 +677,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -391,7 +685,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_buffer_usage{type=\"output\", instance=\"$instance\"}",
+          "expr": "gl_buffer_usage{type=\"output\", instance=~\"$instance\", job=~\"$job\"}",
           "hide": false,
           "legendFormat": "{{instance}} Used",
           "range": true,
@@ -403,7 +697,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_buffer_size{type=\"output\", instance=\"$instance\"}",
+          "expr": "gl_buffer_size{type=\"output\", instance=~\"$instance\", job=~\"$job\"}",
           "hide": false,
           "legendFormat": "{{instance}} Size",
           "range": true,
@@ -479,7 +773,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 8
+        "y": 15
       },
       "id": 95,
       "interval": "60s",
@@ -496,7 +790,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -505,7 +799,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "gl_buffer_process_time{instance=\"$instance\", type=\"process\", quantile=\"0.99\"}",
+          "expr": "gl_buffer_process_time{ type=\"process\", quantile=\"0.99\", instance=~\"$instance\", job=~\"$job\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{instance}}",
@@ -583,7 +877,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 8
+        "y": 15
       },
       "id": 96,
       "interval": "60s",
@@ -600,7 +894,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -609,7 +903,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "gl_buffer_process_time{instance=\"$instance\", type=\"output\", quantile=\"0.99\"}",
+          "expr": "gl_buffer_process_time{type=\"output\", quantile=\"0.99\", instance=~\"$instance\", job=~\"$job\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{instance}}",
@@ -627,7 +921,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 22
       },
       "id": 4,
       "panels": [],
@@ -653,7 +947,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -696,14 +990,18 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 16
+        "y": 23
       },
       "id": 2,
-      "interval": "5s",
+      "interval": "60s",
+      "maxDataPoints": 100,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "sum",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -713,7 +1011,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -721,7 +1019,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "increase(gl_buffer_incoming_messages_total{type=\"input\", instance=\"$instance\"}[$__rate_interval])",
+          "expr": "increase(gl_buffer_incoming_messages_total{type=\"input\", instance=~\"$instance\", job=~\"$job\"}[$__rate_interval])",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -749,7 +1047,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 27,
+            "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -758,6 +1056,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -796,9 +1097,11 @@
         "h": 9,
         "w": 8,
         "x": 8,
-        "y": 16
+        "y": 23
       },
       "id": 12,
+      "interval": "60s",
+      "maxDataPoints": 100,
       "options": {
         "legend": {
           "calcs": [
@@ -809,7 +1112,7 @@
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true,
-          "sortBy": "Total",
+          "sortBy": "Mean",
           "sortDesc": true
         },
         "tooltip": {
@@ -818,7 +1121,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -826,8 +1129,8 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "increase(gl_stream_incoming_messages_total{instance=\"$instance\"}[$__rate_interval]) > 0",
-          "legendFormat": "{{stream}}",
+          "expr": "increase(gl_stream_incoming_messages_total{instance=~\"$instance\", job=~\"$job\"}[$__rate_interval]) > 0",
+          "legendFormat": "{{stream_lookup}}",
           "range": true,
           "refId": "A"
         }
@@ -863,7 +1166,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 16
+        "y": 23
       },
       "id": 92,
       "interval": "90s",
@@ -893,7 +1196,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -901,8 +1204,8 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "increase(gl_stream_incoming_messages_total{instance=\"$instance\"}[$__rate_interval]) > 0",
-          "legendFormat": "{{stream}}",
+          "expr": "increase(gl_stream_incoming_messages_total{instance=~\"$instance\", job=~\"$job\"}[$__rate_interval]) > 0",
+          "legendFormat": "{{stream_lookup}}",
           "range": true,
           "refId": "A"
         }
@@ -930,7 +1233,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 30,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -975,16 +1278,20 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 8,
+        "w": 6,
         "x": 0,
-        "y": 25
+        "y": 32
       },
       "id": 22,
-      "interval": "5s",
+      "interval": "60s",
+      "maxDataPoints": 100,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "sum",
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -994,7 +1301,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1002,7 +1309,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "irate(gl_elasticsearch_output_writes_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "increase(gl_elasticsearch_output_writes_total{instance=~\"$instance\", job=~\"$job\"}[$__rate_interval])",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -1013,7 +1320,106 @@
     },
     {
       "datasource": {
-        "default": true,
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 6,
+        "y": 32
+      },
+      "id": 104,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "gl_blocking_elasticsearch_output_batch_size{instance=~\"$instance\", job=~\"$job\", quantile=\"0.999\"}",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Output Batch Size",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
         "type": "prometheus",
         "uid": "${datasource}"
       },
@@ -1081,9 +1487,9 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 8,
-        "y": 25
+        "w": 6,
+        "x": 12,
+        "y": 32
       },
       "id": 93,
       "options": {
@@ -1099,7 +1505,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1108,7 +1514,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "gl_blocking_elasticsearch_output_process_time{instance=\"$instance\", quantile=\"0.99\"}",
+          "expr": "gl_blocking_elasticsearch_output_process_time{quantile=\"0.999\", instance=~\"$instance\", job=~\"$job\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{instance}}",
@@ -1138,8 +1544,8 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
+            "barWidthFactor": 0.1,
+            "drawStyle": "bars",
             "fillOpacity": 10,
             "gradientMode": "none",
             "hideFrom": {
@@ -1161,7 +1567,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "area"
             }
           },
           "links": [],
@@ -1175,7 +1581,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0
               }
             ]
           },
@@ -1185,16 +1591,18 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 25
+        "w": 6,
+        "x": 18,
+        "y": 32
       },
       "id": 94,
-      "interval": "5s",
+      "interval": "60s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1204,7 +1612,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1212,8 +1620,8 @@
             "uid": "${datasource}"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "rate(gl_elasticsearch_output_failures_total{instance=\"$instance\"}[$__rate_interval])",
+          "editorMode": "code",
+          "expr": "increase(gl_elasticsearch_output_failures_total{instance=~\"$instance\", job=~\"$job\"}[$__rate_interval])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{instance}}",
@@ -1231,7 +1639,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 41
       },
       "id": 71,
       "panels": [],
@@ -1257,8 +1665,8 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1303,9 +1711,10 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 35
+        "y": 42
       },
       "id": 67,
+      "interval": "1m",
       "options": {
         "legend": {
           "calcs": [],
@@ -1319,18 +1728,22 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "editorMode": "builder",
-          "expr": "gl_jersey_http_worker_executor_thread{node=\"$node\", quantile=\"0.99\"}",
-          "legendFormat": "{{instance}} {{quantile}}% {{type}}",
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "gl_jersey_http_worker_executor_thread{instance=~\"$instance\", job=~\"$job\", type=\"running\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{instance}} {{type}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Thread Count",
@@ -1356,7 +1769,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 30,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1377,7 +1790,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "area"
             }
           },
           "mappings": [],
@@ -1388,8 +1801,16 @@
                 "color": "green"
               },
               {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "orange",
+                "value": 20
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 30
               }
             ]
           },
@@ -1401,7 +1822,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 35
+        "y": 42
       },
       "id": 69,
       "options": {
@@ -1417,7 +1838,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1425,7 +1846,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_jersey_http_worker_duration{node=\"$node\",quantile=\"0.99\"}",
+          "expr": "gl_jersey_http_worker_duration{quantile=\"0.99\", instance=~\"$instance\", job=~\"$job\"}",
           "legendFormat": "{{instance}} {{quantile}}%",
           "range": true,
           "refId": "A"
@@ -1453,8 +1874,8 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1499,9 +1920,10 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 35
+        "y": 42
       },
       "id": 68,
+      "interval": "1m",
       "options": {
         "legend": {
           "calcs": [],
@@ -1515,7 +1937,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1523,7 +1945,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "irate(gl_jersey_http_worker_executor_thread_total{node=\"$node\"}[$__rate_interval])",
+          "expr": "irate(gl_jersey_http_worker_executor_thread_total{instance=~\"$instance\", job=~\"$job\"}[$__rate_interval])",
           "legendFormat": "{{instance}} {{type}}",
           "range": true,
           "refId": "A"
@@ -1538,7 +1960,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 50
       },
       "id": 14,
       "panels": [],
@@ -1612,7 +2034,7 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 44
+        "y": 51
       },
       "id": 98,
       "interval": "5s",
@@ -1629,7 +2051,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1637,7 +2059,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_journal_utilization_ratio{instance=\"$instance\"}",
+          "expr": "gl_journal_utilization_ratio{instance=~\"$instance\", job=~\"$job\"}",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -1712,7 +2134,7 @@
         "h": 9,
         "w": 8,
         "x": 8,
-        "y": 44
+        "y": 51
       },
       "id": 18,
       "interval": "5s",
@@ -1729,7 +2151,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1737,7 +2159,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_journal_size{instance=\"$instance\"}",
+          "expr": "gl_journal_size{instance=~\"$instance\", job=~\"$job\"}",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -1812,7 +2234,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 44
+        "y": 51
       },
       "id": 19,
       "interval": "5s",
@@ -1829,7 +2251,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1",
+      "pluginVersion": "12.0.2",
       "targets": [
         {
           "datasource": {
@@ -1837,7 +2259,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "gl_journal_entries_uncommitted{instance=\"$instance\"}",
+          "expr": "gl_journal_entries_uncommitted{instance=~\"$instance\", job=~\"$job\"}",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -1857,10 +2279,7 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Prometheus",
-          "value": "ZMsdVfm4k"
-        },
+        "current": {},
         "includeAll": false,
         "name": "datasource",
         "options": [],
@@ -1870,21 +2289,20 @@
         "type": "datasource"
       },
       {
-        "current": {
-          "text": "pve-graylog1.geek4u.net",
-          "value": "pve-graylog1.geek4u.net"
-        },
+        "allowCustomValue": false,
+        "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(gl_system_job_manager_executor_thread,instance)",
-        "includeAll": false,
-        "name": "instance",
+        "definition": "label_values(gl_system_job_manager_executor_thread,job)",
+        "label": "Job",
+        "multi": true,
+        "name": "job",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(gl_system_job_manager_executor_thread,instance)",
+          "query": "label_values(gl_system_job_manager_executor_thread,job)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1892,22 +2310,41 @@
         "type": "query"
       },
       {
-        "current": {
-          "text": "1a5bcf17-db10-4319-9b85-4726d127e369",
-          "value": "1a5bcf17-db10-4319-9b85-4726d127e369"
-        },
+        "allowCustomValue": false,
+        "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(gl_log_appenders_total{instance=\"$instance\"},node)",
+        "definition": "label_values(gl_system_job_manager_executor_thread{job=~\"$job\"},instance)",
+        "includeAll": false,
+        "multi": true,
+        "name": "instance",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(gl_system_job_manager_executor_thread{job=~\"$job\"},instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "definition": "label_values(gl_log_appenders_total{instance=~\"$instance\", job=~\"$job\"},node)",
+        "hide": 2,
         "includeAll": false,
         "label": "node",
         "name": "node",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(gl_log_appenders_total{instance=\"$instance\"},node)",
+          "query": "label_values(gl_log_appenders_total{instance=~\"$instance\", job=~\"$job\"},node)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1937,5 +2374,5 @@
   "timezone": "",
   "title": "Graylog Server",
   "uid": "H2vmFsKGy",
-  "version": 15
+  "version": 44
 }
